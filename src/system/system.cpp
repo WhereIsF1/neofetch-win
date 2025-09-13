@@ -3,6 +3,7 @@
 #include <chrono>
 
 #include <system.h>
+#include <process.h>
 
 std::wstring getusername() {
     TCHAR username[UNLEN + 1]{};
@@ -23,11 +24,13 @@ std::wstring gethostname() {
 }
 
 std::wstring getconsole() {
+    std::wstring parent = getparentprocess();
+    if (!parent.empty()) {
+        return mapshellname(parent);
+    }
 
     WCHAR console[UNLEN + 1]{};
     GetConsoleTitleW((WCHAR*)console, 256);
-
-    std::wstring consolestring = console;
     return console;
 }
 

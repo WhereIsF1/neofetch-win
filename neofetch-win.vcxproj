@@ -229,6 +229,7 @@
     <ClCompile Include="src\display\display.cpp" />
     <ClCompile Include="src\hardware\hardware.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\system\process.cpp" />
     <ClCompile Include="src\system\system.cpp" />
     <ClCompile Include="src\utils\utils.cpp" />
     <ClCompile Include="src\windows\windows.cpp" />
@@ -239,6 +240,7 @@
     <ClInclude Include="include\colors.h" />
     <ClInclude Include="include\display.h" />
     <ClInclude Include="include\hardware.h" />
+    <ClInclude Include="include\process.h" />
     <ClInclude Include="include\system.h" />
     <ClInclude Include="include\utils.h" />
     <ClInclude Include="include\windowsinfo.h" />
