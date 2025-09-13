@@ -26,14 +26,12 @@ jobs:
     runs-on: windows-latest
     strategy:
       matrix:
-        platform: [Win32, x64, ARM64]
+        platform: [Win32, x64]
         include:
           - platform: Win32
             arch_name: x86
           - platform: x64
             arch_name: x64
-          - platform: ARM64
-            arch_name: arm64
 
     steps:
     - uses: actions/checkout@v4
@@ -54,4 +52,3 @@ jobs:
         path: |
           x86/Release/*.exe
           x64/Release/*.exe
-          ARM64/Release/*.exe

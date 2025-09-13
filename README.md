@@ -24,10 +24,9 @@ Run from project root directory:
 ```
 msbuild.exe /clp:ErrorsOnly /p:Configuration=Release /p:Platform=x86      # x86 (32-bit)
 msbuild.exe /clp:ErrorsOnly /p:Configuration=Release /p:Platform=x64      # x64 (64-bit)
-msbuild.exe /clp:ErrorsOnly /p:Configuration=Release /p:Platform=ARM64    # ARM64
 ```
 
-Supports x86, x64, and ARM64 architectures.
+Supports x86 and x64 architectures.
 
 ## Pictures ##
 
