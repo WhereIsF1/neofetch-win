@@ -16,8 +16,6 @@ env:
   SOLUTION_FILE_PATH: .
 
   # Configuration type to build.
-  # You can convert this to a build matrix if you need coverage of multiple configuration types.
-  # https://docs.github.com/actions/learn-github-actions/managing-complex-workflows#using-a-build-matrix
   BUILD_CONFIGURATION: Release
 
 permissions:
@@ -26,6 +24,16 @@ permissions:
 jobs:
   build:
     runs-on: windows-latest
+    strategy:
+      matrix:
+        platform: [Win32, x64, ARM64]
+        include:
+          - platform: Win32
+            arch_name: x86
+          - platform: x64
+            arch_name: x64
+          - platform: ARM64
+            arch_name: arm64
 
     steps:
     - uses: actions/checkout@v4
@@ -33,8 +41,17 @@ jobs:
     - name: Add MSBuild to PATH
       uses: microsoft/setup-msbuild@v1.0.2
 
-    - name: Build
+    - name: Build ${{ matrix.arch_name }}
       working-directory: ${{env.GITHUB_WORKSPACE}}
       # Add additional options to the MSBuild command line here (like platform or verbosity level).
       # See https://docs.microsoft.com/visualstudio/msbuild/msbuild-command-line-reference
-      run: msbuild /m /p:Configuration=${{env.BUILD_CONFIGURATION}} ${{env.SOLUTION_FILE_PATH}}
+      run: msbuild /m /p:Configuration=${{env.BUILD_CONFIGURATION}} /p:Platform=${{ matrix.platform }} ${{env.SOLUTION_FILE_PATH}}
+
+    - name: Upload ${{ matrix.arch_name }} artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: neofetch-win-${{ matrix.arch_name }}
+        path: |
+          x86/Release/*.exe
+          x64/Release/*.exe
+          ARM64/Release/*.exe

@@ -18,8 +18,16 @@ That's it
 
 Used to only compile in C++20, now should build with older standards (tested and working for C++11 and 14)
 
-Run from project root directory
-`msbuild.exe /clp:ErrorsOnly /p:Configuration=Release`
+Run from project root directory:
+
+**Specific architectures:**
+```
+msbuild.exe /clp:ErrorsOnly /p:Configuration=Release /p:Platform=x86      # x86 (32-bit)
+msbuild.exe /clp:ErrorsOnly /p:Configuration=Release /p:Platform=x64      # x64 (64-bit)
+msbuild.exe /clp:ErrorsOnly /p:Configuration=Release /p:Platform=ARM64    # ARM64
+```
+
+Supports x86, x64, and ARM64 architectures.
 
 ## Pictures ##
 
@@ -32,5 +40,4 @@ Run from project root directory
 Evil Jay — Today at 7:05 PM
 Well you're gonna have a hard time selling your bootleg neofetch :stoichSlow:
 
-made with love by nepnep
-
+made with love by nepnep and izumi
